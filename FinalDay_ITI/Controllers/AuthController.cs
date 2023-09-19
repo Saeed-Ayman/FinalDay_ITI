@@ -28,7 +28,11 @@ public class AuthController
 
     public static void SignUp(UserRequest request)
     {
-        if (_firstUser) request.Role = ERole.Manager;
+        if (_firstUser)
+        {
+            request.Role = ERole.Manager;
+            _firstUser = false;
+        }
 
         UserController.Store(request);
 
@@ -50,7 +54,7 @@ public class AuthController
     public static void SignOut(Form parent)
     {
         User = null;
-        Login(parent);
+        Run(parent);
     }
 
     public static object History()
@@ -60,7 +64,7 @@ public class AuthController
 
     public static void Run(Form parent)
     {
-        if (_firstUser = !_db.Users.Any()) Register(parent);
+        if (_firstUser = !_db.Users.Any(user => user.Role == ERole.Manager)) Register(parent);
         else Login(parent);
     }
 }
