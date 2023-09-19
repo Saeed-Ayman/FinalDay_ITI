@@ -9,7 +9,7 @@ public class UserRequest
     private string _email;
     private readonly string _password;
     private readonly string _confirmedPassword;
-    private readonly ERole _role;
+    public ERole Role;
 
     public User? User;
 
@@ -21,7 +21,7 @@ public class UserRequest
         _email = email;
         _password = password;
         _confirmedPassword = confirmedPassword;
-        _role = role;
+        Role = role;
     }
 
     public User Validate()
@@ -44,7 +44,7 @@ public class UserRequest
             Name = _firstName.ToUFirst() + " " + _lastName.ToUFirst(),
             Email = _email.ToLower(),
             Password = _password,
-            Role = _role
+            Role = Role
         };
     }
 }

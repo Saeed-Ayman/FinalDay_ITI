@@ -16,8 +16,8 @@ namespace FinalDay_ITI.Views.Order
 
         private void EditBtn_Click(object sender, EventArgs e)
         {
-            OrderMedicineController.Edit(/*_order.Id*/);
-            dataGridView.DataSource = _order.OrderMedicines.Index();
+            //OrderMedicineController.Edit(/*_order.Id*/);
+            //dataGridView.DataSource = _order.OrderMedicines.Index();
         }
     }
 }

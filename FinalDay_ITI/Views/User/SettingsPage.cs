@@ -2,10 +2,7 @@
 {
     public partial class SettingsPage : UserControl
     {
-        public SettingsPage()
-        {
-            InitializeComponent();
-        }
+        public SettingsPage() => InitializeComponent();
 
         public override void Refresh()
         {

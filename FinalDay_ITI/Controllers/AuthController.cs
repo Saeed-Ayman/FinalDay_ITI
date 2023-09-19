@@ -8,6 +8,7 @@ public class AuthController
 {
     public static User? User;
     private static readonly PharmacyContext _db = MainController.DB;
+    private static bool _firstUser;
 
     public static void Login(Form parent) => MainController.SwitchToForm(parent, new Login());
 
@@ -27,6 +28,8 @@ public class AuthController
 
     public static void SignUp(UserRequest request)
     {
+        if (_firstUser) request.Role = ERole.Manager;
+
         UserController.Store(request);
 
         Attempt(new(request.User.Email, request.User.Password));
@@ -57,7 +60,7 @@ public class AuthController
 
     public static void Run(Form parent)
     {
-        if (_db.Users.Any()) Login(parent);
-        else Register(parent);
+        if (_firstUser = !_db.Users.Any()) Register(parent);
+        else Login(parent);
     }
 }

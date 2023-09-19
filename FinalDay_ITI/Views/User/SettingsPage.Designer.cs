@@ -76,6 +76,6 @@
 
         private SettingsPartials.EditPassword editPassword1;
         private SettingsPartials.DeleteAccount deleteAccount1;
-        private SettingsPartials.EditInfo editInfo1;
+        public SettingsPartials.EditInfo editInfo1;
     }
 }

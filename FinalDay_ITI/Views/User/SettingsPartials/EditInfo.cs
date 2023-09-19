@@ -4,7 +4,7 @@ namespace FinalDay_ITI.Views.User.SettingsPartials;
 
 public partial class EditInfo : UserControl
 {
-    private static Models.User _user = AuthController.User;
+    public event Action? OnRefresh;
 
     public EditInfo()
     {
@@ -30,7 +30,7 @@ public partial class EditInfo : UserControl
     {
         base.Refresh();
 
-        _user = AuthController.User;
+        var _user = AuthController.User;
 
         var name = _user.Name.Split(' ');
 
@@ -38,5 +38,7 @@ public partial class EditInfo : UserControl
         LastNameTxt.Text = name[1];
         EmailTxt.Text = _user.Email;
         PasswordTxt.Text = "";
+
+        OnRefresh?.Invoke();
     }
 }

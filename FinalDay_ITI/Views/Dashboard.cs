@@ -14,8 +14,6 @@ public partial class Dashboard : Form
     {
         InitializeComponent();
 
-        var db = MainController.DB;
-
         _pages = new()
         {
             { "Home", new HomePage() { Dock=DockStyle.Fill, Visible=true } },
@@ -38,6 +36,7 @@ public partial class Dashboard : Form
         ((GridViewPage)_pages["Categories"]).OnClickBtns += CategoriesBtns_Click;
         ((GridViewPage)_pages["Medicines"]).OnClickBtns += MedicinesBtns_Click;
         ((GridViewPage)_pages["Orders"]).OnClickBtns += OrdersBtns_Click;
+        ((SettingsPage)_pages["Settings"]).editInfo1.OnRefresh += dashboardHeader.Refresh;
 
         dashboardHeader.OnClickMenuBtn += navSideBar1.ShowOrHidePanel;
         navSideBar1.OnClickBtn += ChangePage;
