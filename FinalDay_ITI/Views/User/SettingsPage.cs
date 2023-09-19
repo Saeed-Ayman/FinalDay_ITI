@@ -2,7 +2,14 @@
 {
     public partial class SettingsPage : UserControl
     {
-        public SettingsPage() => InitializeComponent();
+        public SettingsPage()
+        {
+            InitializeComponent();
+
+            Dock = DockStyle.Top;
+            AutoScroll = true;
+            Visible = false;
+        }
 
         public override void Refresh()
         {

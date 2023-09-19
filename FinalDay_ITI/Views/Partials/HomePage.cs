@@ -5,6 +5,8 @@
         public HomePage()
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
+            Visible = false;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace FinalDay_ITI.Views.Order
 {
-    partial class EditOrderMedicines
+    partial class AddOrderMedicine
     {
         /// <summary>
         /// Required designer variable.
@@ -28,76 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
+            AddBtn = new Button();
             QuantityInput = new NumericUpDown();
             label1 = new Label();
             MedicineNames = new ComboBox();
             FirstNameLabel = new Label();
-            EditBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)QuantityInput).BeginInit();
             SuspendLayout();
+            // 
+            // AddBtn
+            // 
+            AddBtn.Location = new Point(132, 210);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(143, 41);
+            AddBtn.TabIndex = 69;
+            AddBtn.Text = "Add";
+            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
             // 
             // QuantityInput
             // 
             QuantityInput.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            QuantityInput.Location = new Point(30, 156);
+            QuantityInput.Location = new Point(29, 152);
+            QuantityInput.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             QuantityInput.Name = "QuantityInput";
             QuantityInput.Size = new Size(350, 33);
-            QuantityInput.TabIndex = 63;
+            QuantityInput.TabIndex = 2;
+            QuantityInput.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(30, 123);
+            label1.Location = new Point(29, 119);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(93, 30);
-            label1.TabIndex = 62;
+            label1.TabIndex = 67;
             label1.Text = "Quantity";
             // 
             // MedicineNames
             // 
             MedicineNames.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             MedicineNames.FormattingEnabled = true;
-            MedicineNames.Location = new Point(30, 66);
+            MedicineNames.Location = new Point(29, 62);
             MedicineNames.Name = "MedicineNames";
             MedicineNames.Size = new Size(350, 33);
-            MedicineNames.TabIndex = 61;
+            MedicineNames.TabIndex = 1;
             // 
             // FirstNameLabel
             // 
             FirstNameLabel.AutoSize = true;
             FirstNameLabel.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            FirstNameLabel.Location = new Point(30, 30);
+            FirstNameLabel.Location = new Point(29, 26);
             FirstNameLabel.Name = "FirstNameLabel";
             FirstNameLabel.Size = new Size(166, 30);
-            FirstNameLabel.TabIndex = 60;
+            FirstNameLabel.TabIndex = 65;
             FirstNameLabel.Text = "Medicine Name";
             // 
-            // EditBtn
-            // 
-            EditBtn.Location = new Point(133, 214);
-            EditBtn.Name = "EditBtn";
-            EditBtn.Size = new Size(143, 41);
-            EditBtn.TabIndex = 64;
-            EditBtn.Text = "Edit";
-            EditBtn.UseVisualStyleBackColor = true;
-            EditBtn.Click += EditBtn_Click;
-            // 
-            // EditOrderMedicines
+            // AddOrderMedicine
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(409, 276);
-            Controls.Add(EditBtn);
+            Controls.Add(AddBtn);
             Controls.Add(QuantityInput);
             Controls.Add(label1);
             Controls.Add(MedicineNames);
             Controls.Add(FirstNameLabel);
-            FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            Name = "EditOrderMedicines";
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Name = "AddOrderMedicine";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Edit Order";
+            Text = "Add Order Medicine";
             ((System.ComponentModel.ISupportInitialize)QuantityInput).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -105,10 +107,10 @@
 
         #endregion
 
+        private Button AddBtn;
         private NumericUpDown QuantityInput;
         private Label label1;
         private ComboBox MedicineNames;
         private Label FirstNameLabel;
-        private Button EditBtn;
     }
 }

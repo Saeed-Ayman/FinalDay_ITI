@@ -24,8 +24,7 @@ public partial class NavSideBar : UserControl
 
         // just in case
         SettingsBtn.Visible = ERole.User <= role;
-        HistoryBtn.Visible = ERole.User <= role;
-        CreateOrderBtn.Visible = ERole.User <= role;
+        MyOrdersBtn.Visible = ERole.User <= role;
     }
 
     private void Btn_Click(object sender, EventArgs e)

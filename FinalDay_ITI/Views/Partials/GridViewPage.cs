@@ -12,6 +12,9 @@ partial class GridViewPage : UserControl
 
         AddBtn.Visible = AddButton;
         _dataSet = dataSet;
+
+        Dock = DockStyle.Fill;
+        Visible = false;
     }
 
     private void GridViewPage_Load(object sender, EventArgs e)

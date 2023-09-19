@@ -2,11 +2,11 @@
 
 namespace FinalDay_ITI.Views.Order;
 
-public partial class EditOrderMedicines : Form
+public partial class EditOrderMedicine : Form
 {
     private Models.OrderMedicine _orderMedicine;
 
-    public EditOrderMedicines(Models.OrderMedicine orderMedicine)
+    public EditOrderMedicine(Models.OrderMedicine orderMedicine)
     {
         InitializeComponent();
 
@@ -16,7 +16,7 @@ public partial class EditOrderMedicines : Form
         MedicineNames.DisplayMember = "Name";
         MedicineNames.ValueMember = "Id";
 
-        MedicineNames.SelectedValue = _orderMedicine.Id;
+        MedicineNames.SelectedValue = _orderMedicine.Medicine.Id;
         QuantityInput.Value = _orderMedicine.Quantity;
     }
 
@@ -24,9 +24,12 @@ public partial class EditOrderMedicines : Form
     {
         try
         {
-            _orderMedicine.Quantity = (int)QuantityInput.Value;
-            _orderMedicine.MedicineId = (int)MedicineNames.SelectedValue;
-            OrderMedicineController.Update(_orderMedicine);
+            OrderMedicineController.Update(
+                 _orderMedicine.OrderId,
+                 _orderMedicine.Id,
+                Convert.ToInt32(MedicineNames.SelectedValue),
+                (int)QuantityInput.Value
+            );
             Close();
         }
         catch (Exception ex)

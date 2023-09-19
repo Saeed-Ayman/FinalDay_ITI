@@ -15,12 +15,11 @@ class MedicineController
         {
             medicine.Id,
             medicine.Name,
+            Category = medicine.Category.Name,
             medicine.Price,
             medicine.Quantity,
             ProductionDate = new DateOnly(medicine.ProductionDate.Year, medicine.ProductionDate.Month, medicine.ProductionDate.Day),
             ExpirationDate = new DateOnly(medicine.ExpirationDate.Year, medicine.ExpirationDate.Month, medicine.ExpirationDate.Day),
-            SoldNumbers = medicine.OrderMedicines.Count,
-            Category = medicine.Category.Name,
         }).ToList();
     }
 

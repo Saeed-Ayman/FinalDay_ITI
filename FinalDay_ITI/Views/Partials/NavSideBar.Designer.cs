@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             SettingsBtn = new FontAwesome.Sharp.IconButton();
-            HistoryBtn = new FontAwesome.Sharp.IconButton();
-            CreateOrderBtn = new FontAwesome.Sharp.IconButton();
+            MyOrdersBtn = new FontAwesome.Sharp.IconButton();
             OrdersBtn = new FontAwesome.Sharp.IconButton();
             MedicinesBtn = new FontAwesome.Sharp.IconButton();
             CategoriesBtn = new FontAwesome.Sharp.IconButton();
@@ -61,51 +60,28 @@
             SettingsBtn.UseVisualStyleBackColor = false;
             SettingsBtn.Click += Btn_Click;
             // 
-            // HistoryBtn
+            // MyOrdersBtn
             // 
-            HistoryBtn.BackColor = Color.Indigo;
-            HistoryBtn.Dock = DockStyle.Top;
-            HistoryBtn.FlatAppearance.BorderSize = 0;
-            HistoryBtn.FlatStyle = FlatStyle.Flat;
-            HistoryBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            HistoryBtn.IconChar = FontAwesome.Sharp.IconChar.Inbox;
-            HistoryBtn.IconColor = Color.White;
-            HistoryBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            HistoryBtn.IconSize = 35;
-            HistoryBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            HistoryBtn.Location = new Point(0, 360);
-            HistoryBtn.Name = "HistoryBtn";
-            HistoryBtn.Padding = new Padding(20, 0, 10, 0);
-            HistoryBtn.Size = new Size(300, 60);
-            HistoryBtn.TabIndex = 7;
-            HistoryBtn.Text = "History";
-            HistoryBtn.TextAlign = ContentAlignment.MiddleLeft;
-            HistoryBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
-            HistoryBtn.UseVisualStyleBackColor = false;
-            HistoryBtn.Click += Btn_Click;
-            // 
-            // CreateOrderBtn
-            // 
-            CreateOrderBtn.BackColor = Color.Indigo;
-            CreateOrderBtn.Dock = DockStyle.Top;
-            CreateOrderBtn.FlatAppearance.BorderSize = 0;
-            CreateOrderBtn.FlatStyle = FlatStyle.Flat;
-            CreateOrderBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            CreateOrderBtn.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
-            CreateOrderBtn.IconColor = Color.White;
-            CreateOrderBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            CreateOrderBtn.IconSize = 35;
-            CreateOrderBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            CreateOrderBtn.Location = new Point(0, 300);
-            CreateOrderBtn.Name = "CreateOrderBtn";
-            CreateOrderBtn.Padding = new Padding(20, 0, 10, 0);
-            CreateOrderBtn.Size = new Size(300, 60);
-            CreateOrderBtn.TabIndex = 6;
-            CreateOrderBtn.Text = "Create Order";
-            CreateOrderBtn.TextAlign = ContentAlignment.MiddleLeft;
-            CreateOrderBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
-            CreateOrderBtn.UseVisualStyleBackColor = false;
-            CreateOrderBtn.Click += Btn_Click;
+            MyOrdersBtn.BackColor = Color.Indigo;
+            MyOrdersBtn.Dock = DockStyle.Top;
+            MyOrdersBtn.FlatAppearance.BorderSize = 0;
+            MyOrdersBtn.FlatStyle = FlatStyle.Flat;
+            MyOrdersBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            MyOrdersBtn.IconChar = FontAwesome.Sharp.IconChar.Bookmark;
+            MyOrdersBtn.IconColor = Color.White;
+            MyOrdersBtn.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            MyOrdersBtn.IconSize = 35;
+            MyOrdersBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            MyOrdersBtn.Location = new Point(0, 300);
+            MyOrdersBtn.Name = "MyOrdersBtn";
+            MyOrdersBtn.Padding = new Padding(20, 0, 10, 0);
+            MyOrdersBtn.Size = new Size(300, 60);
+            MyOrdersBtn.TabIndex = 7;
+            MyOrdersBtn.Text = "MyOrders";
+            MyOrdersBtn.TextAlign = ContentAlignment.MiddleLeft;
+            MyOrdersBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            MyOrdersBtn.UseVisualStyleBackColor = false;
+            MyOrdersBtn.Click += Btn_Click;
             // 
             // OrdersBtn
             // 
@@ -228,8 +204,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.Indigo;
-            Controls.Add(HistoryBtn);
-            Controls.Add(CreateOrderBtn);
+            Controls.Add(MyOrdersBtn);
             Controls.Add(OrdersBtn);
             Controls.Add(MedicinesBtn);
             Controls.Add(CategoriesBtn);
@@ -244,8 +219,7 @@
 
         #endregion
         private FontAwesome.Sharp.IconButton SettingsBtn;
-        private FontAwesome.Sharp.IconButton HistoryBtn;
-        public FontAwesome.Sharp.IconButton CreateOrderBtn;
+        private FontAwesome.Sharp.IconButton MyOrdersBtn;
         private FontAwesome.Sharp.IconButton OrdersBtn;
         private FontAwesome.Sharp.IconButton MedicinesBtn;
         private FontAwesome.Sharp.IconButton CategoriesBtn;
