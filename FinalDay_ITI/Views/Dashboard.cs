@@ -116,7 +116,7 @@ public partial class Dashboard : Form
                 MedicineController.Edit((int)e.CurrentRow.Cells["Id"].Value, this);
                 break;
             case "DeleteBtn":
-                MessageBox.Show("Not Supported Now!");
+                MedicineController.Delete((int)e.CurrentRow.Cells["Id"].Value, this);
                 break;
             default:
                 break;

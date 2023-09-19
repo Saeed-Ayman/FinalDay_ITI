@@ -34,7 +34,7 @@
             QuantityInput = new NumericUpDown();
             PriceInput = new NumericUpDown();
             EditBtn = new Button();
-            comboBox1 = new ComboBox();
+            CategoryNames = new ComboBox();
             CategoryLabel = new Label();
             ProductionDateLabel = new Label();
             PasswordLabel = new Label();
@@ -55,6 +55,7 @@
             ExpirationDate.Name = "ExpirationDate";
             ExpirationDate.Size = new Size(352, 33);
             ExpirationDate.TabIndex = 63;
+            ExpirationDate.ValueChanged += ExpirationDate_ValueChanged;
             // 
             // ExpirationDateLabel
             // 
@@ -77,6 +78,7 @@
             ProductionDate.Name = "ProductionDate";
             ProductionDate.Size = new Size(352, 33);
             ProductionDate.TabIndex = 61;
+            ProductionDate.ValueChanged += ProductionDate_ValueChanged;
             // 
             // QuantityInput
             // 
@@ -105,14 +107,14 @@
             EditBtn.UseVisualStyleBackColor = true;
             EditBtn.Click += EditBtn_Click;
             // 
-            // comboBox1
+            // CategoryNames
             // 
-            comboBox1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(66, 475);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(352, 38);
-            comboBox1.TabIndex = 57;
+            CategoryNames.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            CategoryNames.FormattingEnabled = true;
+            CategoryNames.Location = new Point(66, 475);
+            CategoryNames.Name = "CategoryNames";
+            CategoryNames.Size = new Size(352, 38);
+            CategoryNames.TabIndex = 57;
             // 
             // CategoryLabel
             // 
@@ -187,7 +189,7 @@
             Controls.Add(QuantityInput);
             Controls.Add(PriceInput);
             Controls.Add(EditBtn);
-            Controls.Add(comboBox1);
+            Controls.Add(CategoryNames);
             Controls.Add(CategoryLabel);
             Controls.Add(ProductionDateLabel);
             Controls.Add(PasswordLabel);
@@ -212,7 +214,7 @@
         private NumericUpDown QuantityInput;
         private NumericUpDown PriceInput;
         private Button EditBtn;
-        private ComboBox comboBox1;
+        private ComboBox CategoryNames;
         private Label CategoryLabel;
         private Label ProductionDateLabel;
         private Label PasswordLabel;

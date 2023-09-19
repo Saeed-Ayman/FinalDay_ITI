@@ -1,4 +1,5 @@
 ﻿using FinalDay_ITI.Models;
+using FinalDay_ITI.Requests;
 using FinalDay_ITI.Views.Medicine;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,18 +29,11 @@ class MedicineController
         new AddMedicine().ShowDialog(parent);
     }
 
-    public static void Store(string name, double price, int quantity, DateTime productionDate, DateTime expirationDate, int categoryId)
+    public static void Store(MedicineRequest request)
     {
-        // TODO : Make Validation
-        _db.Medicines.Add(new()
-        {
-            Name = name,
-            Price = price,
-            Quantity = quantity,
-            ProductionDate = productionDate,
-            ExpirationDate = expirationDate,
-            CategoryId = categoryId,
-        });
+        var medicine = request.Validate();
+
+        _db.Medicines.Add(medicine);
 
         _db.SaveChanges();
     }
@@ -51,19 +45,24 @@ class MedicineController
         new EditMedicine(Medicine).ShowDialog(parent);
     }
 
-    public static void Update(int id, string name, double price, int quantity, DateTime productionDate, DateTime expirationDate, int categoryId)
+    public static void Update(int id, MedicineRequest request)
     {
-        var Medicine = _db.Medicines.Where(Medicine => id == Medicine.Id).ToList().Single();
+        var editedMedicine = request.Validate();
 
-        Medicine.Name = name;
-        Medicine.Price = price;
-        Medicine.Quantity = quantity;
-        Medicine.ProductionDate = productionDate;
-        Medicine.ExpirationDate = expirationDate;
-        Medicine.CategoryId = categoryId;
+        var medicine = _db.Medicines.Where(medicine => medicine.Id == id).ToList().Single();
+
+        medicine.Name = editedMedicine.Name;
+        medicine.Price = editedMedicine.Price;
+        medicine.Quantity = editedMedicine.Quantity;
+        medicine.ProductionDate = editedMedicine.ProductionDate;
+        medicine.ExpirationDate = editedMedicine.ExpirationDate;
+        medicine.CategoryId = editedMedicine.CategoryId;
 
         _db.SaveChanges();
     }
+
+    public static void Delete(int id, Form parent)
+        => new DeleteMedicine(_db.Medicines.Include("Category").Where(medicine => id == medicine.Id).ToList().Single()).ShowDialog(parent);
 
     public static void Destroy(int id)
     {
