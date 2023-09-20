@@ -66,7 +66,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1009, 597);
+            ClientSize = new Size(1000, 650);
             Controls.Add(LayoutPanel);
             Controls.Add(navSideBar1);
             Controls.Add(dashboardHeader);

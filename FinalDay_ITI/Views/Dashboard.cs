@@ -16,15 +16,13 @@ public partial class Dashboard : Form
         _pages = new()
         {
             { "Home", new HomePage() },
-            { "Users", new GridViewPage(UserController.Index) },
-            { "Categories", new GridViewPage(CategoryController.Index) },
-            { "Medicines", new GridViewPage(MedicineController.Index) },
-            { "Expired Medicines", new GridViewPage(
-                () => MedicineController.Index(medicine => medicine.ExpirationDate <= DateTime.Now), false) },
-            { "Out of Stocks", new GridViewPage(
-                () => MedicineController.Index(medicine => medicine.Quantity == 0), false) },
-            { "Orders", new GridViewPage(OrderController.Index) },
-            { "MyOrders", new GridViewPage(AuthController.History) },
+            { "Users", new GridViewPage(nameof(UserController)) },
+            { "Categories", new GridViewPage(nameof(CategoryController)) },
+            { "Medicines", new GridViewPage(nameof(MedicineController)) },
+            { "Expired Medicines", new GridViewPage(nameof(ExpiredMedicinesController), false) },
+            { "Out of Stocks", new GridViewPage(nameof(OutofStocksController), false) },
+            { "Orders", new GridViewPage(nameof(OrderController)) },
+            { "MyOrders", new GridViewPage(nameof(UserOrderController)) },
             { "Settings", new SettingsPage() },
         };
 

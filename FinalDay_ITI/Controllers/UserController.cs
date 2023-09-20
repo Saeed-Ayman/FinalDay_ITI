@@ -10,11 +10,12 @@ public class UserController
 {
     private static readonly PharmacyContext _db = MainController.DB;
 
-    public static object Index()
-        => _db.Users.Include("Orders").Select(
+    public static object Index(Func<User, bool> predicate)
+        => _db.Users.Include("Orders").Where(predicate).Select(
                 user => new { user.Id, user.Name, user.Email, user.Role, OrdersNumber = user.Orders.Count }
             ).Where(user => user.Id != AuthController.User.Id).ToList();
 
+    public static object Index() => Index(user => true);
 
     public static void Create(Form parent) => new AddUser().ShowDialog(parent);
 

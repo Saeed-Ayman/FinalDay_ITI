@@ -1,12 +1,16 @@
-﻿namespace FinalDay_ITI.Views.Partials;
+﻿using FinalDay_ITI.Controllers;
+using FinalDay_ITI.Requests;
+
+namespace FinalDay_ITI.Views.Partials;
 
 partial class GridViewPage : UserControl
 {
     public event EventHandler<DataGridView>? OnClickBtns;
 
-    private readonly Func<object> _dataSet;
+    private readonly string _controller;
+    private readonly object? _additionalData;
 
-    public GridViewPage(Func<object> dataSet, bool Buttons = true)
+    public GridViewPage(string controller, object? additionalData = null, bool Buttons = true)
     {
         InitializeComponent();
 
@@ -14,7 +18,8 @@ partial class GridViewPage : UserControl
         EditBtn.Visible = Buttons;
         DeleteBtn.Visible = Buttons;
 
-        _dataSet = dataSet;
+        _controller = controller;
+        _additionalData = additionalData;
 
         Dock = DockStyle.Fill;
         Visible = false;
@@ -28,25 +33,28 @@ partial class GridViewPage : UserControl
         for (var i = 0; i < columns.Length; i++)
             columns[i] = dataGridView.Columns[i].Name;
 
-        comboBox1.DataSource = columns;
+        FieldsComboBox.DataSource = columns;
     }
 
     public override void Refresh()
     {
         base.Refresh();
-        dataGridView.DataSource = _dataSet();
+        dataGridView.DataSource = SearchController.Index(_controller, _additionalData, FieldsComboBox.SelectedValue);
         EditBtn.Enabled = dataGridView.Rows.Count > 0;
     }
-
-    private void Btns_Click(object sender, EventArgs e) => OnClickBtns?.Invoke(sender, dataGridView);
 
     private void DataGridView_DataSourceChanged(object sender, EventArgs e)
     {
         bool Enabled = dataGridView.Rows.Count > 0;
         EditBtn.Enabled = Enabled;
         DeleteBtn.Enabled = Enabled;
-        comboBox1.Enabled = Enabled;
-        textBox1.Enabled = Enabled;
+        FieldsComboBox.Enabled = Enabled || !SearchTxt.Text.IsEmpty();
+        SearchTxt.Enabled = Enabled || !SearchTxt.Text.IsEmpty();
         NoDataLabel.Visible = !Enabled;
     }
+
+    private void Btns_Click(object sender, EventArgs e) => OnClickBtns?.Invoke(sender, dataGridView);
+    private void SearchTxt_TextChanged(object sender, EventArgs e)
+        => dataGridView.DataSource = SearchController.Index(_controller, _additionalData, FieldsComboBox.SelectedValue, SearchTxt.Text);
+    private void FieldsComboBox_SelectedIndexChanged(object sender, EventArgs e) => SearchTxt.Text = string.Empty;
 }

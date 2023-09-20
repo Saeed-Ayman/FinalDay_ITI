@@ -1,4 +1,5 @@
 ﻿using FinalDay_ITI.Models;
+using FinalDay_ITI.Repositories;
 using FinalDay_ITI.Requests;
 using FinalDay_ITI.Views.Medicine;
 using Microsoft.EntityFrameworkCore;
@@ -9,21 +10,21 @@ class MedicineController
 {
     private static readonly PharmacyContext _db = MainController.DB;
 
-    public static object Index(Func<Medicine, bool> predicate)
+    public static List<MedicineRepository> Index(Func<Medicine, bool> predicate)
     {
-        return _db.Medicines.Include("Category").Where(predicate).Select(medicine => new
+        return _db.Medicines.Include("Category").Where(predicate).Select(medicine => new MedicineRepository
         {
-            medicine.Id,
-            medicine.Name,
+            Id = medicine.Id,
+            Medicine = medicine.Name,
             Category = medicine.Category.Name,
-            medicine.Price,
-            medicine.Quantity,
-            ProductionDate = new DateOnly(medicine.ProductionDate.Year, medicine.ProductionDate.Month, medicine.ProductionDate.Day),
-            ExpirationDate = new DateOnly(medicine.ExpirationDate.Year, medicine.ExpirationDate.Month, medicine.ExpirationDate.Day),
+            Price = medicine.Price,
+            Quantity = medicine.Quantity,
+            ProductionDate = new(medicine.ProductionDate.Year, medicine.ProductionDate.Month, medicine.ProductionDate.Day),
+            ExpirationDate = new(medicine.ExpirationDate.Year, medicine.ExpirationDate.Month, medicine.ExpirationDate.Day),
         }).ToList();
     }
 
-    public static object Index() => Index(medicine => true);
+    public static List<MedicineRepository> Index() => Index(medicine => true);
 
     public static void Create(Form parent)
     {

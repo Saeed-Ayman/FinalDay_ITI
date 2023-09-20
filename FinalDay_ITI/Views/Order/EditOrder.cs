@@ -13,7 +13,7 @@ public partial class EditOrder : Form
         InitializeComponent();
 
         _order = order;
-        gridViewPage = new(order.Index) { Visible = true };
+        gridViewPage = new(nameof(OrderMedicineController), _order) { Visible = true };
         gridViewPage.OnClickBtns += ClickBtns;
         Controls.Add(gridViewPage);
     }

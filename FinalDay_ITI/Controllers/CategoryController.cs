@@ -8,15 +8,17 @@ class CategoryController
 {
     private static readonly PharmacyContext _db = MainController.DB;
 
-    public static object Index()
+    public static object Index(Func<Category, bool> predicate)
     {
-        return _db.Categories.Include("Medicines").Select(category => new
+        return _db.Categories.Include("Medicines").Where(predicate).Select(category => new
         {
             category.Id,
             category.Name,
             MedicineNumber = category.Medicines.Count
         }).ToList();
     }
+
+    public static object Index() => Index(category => true);
 
     public static void Create(Form parent)
     {

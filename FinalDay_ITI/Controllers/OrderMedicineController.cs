@@ -8,21 +8,21 @@ public static class OrderMedicineController
 {
     private static PharmacyContext _db = MainController.DB;
 
-    public static object Index(this Order order)
-    {
-        return order.OrderMedicines.Join(
+    public static object Index(this Order order, Func<OrderMedicineRepository, bool> predicate)
+        => order.OrderMedicines.Join(
             _db.Medicines,
             orderMedicine => orderMedicine.MedicineId,
             medicine => medicine.Id,
-            (orderMedicine, medicine) => new
+            (orderMedicine, medicine) => new OrderMedicineRepository
             {
-                orderMedicine.Id,
+                Id = orderMedicine.Id,
                 Medicine = medicine.Name,
-                orderMedicine.Quantity,
+                Quantity = orderMedicine.Quantity,
                 TotalPrice = medicine.Price * orderMedicine.Quantity
             }
-        ).ToList();
-    }
+        ).Where(predicate).ToList();
+
+    public static object Index(this Order order) => Index(order, obj => true);
 
     public static void Create(Order order, Form parent)
         => new AddOrderMedicine(order).ShowDialog(parent);

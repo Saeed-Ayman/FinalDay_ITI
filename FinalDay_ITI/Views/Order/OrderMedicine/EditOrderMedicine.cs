@@ -13,7 +13,7 @@ public partial class EditOrderMedicine : Form
         _orderMedicine = orderMedicine;
 
         MedicineNames.DataSource = MedicineController.Index();
-        MedicineNames.DisplayMember = "Name";
+        MedicineNames.DisplayMember = "Medicine";
         MedicineNames.ValueMember = "Id";
 
         MedicineNames.SelectedValue = _orderMedicine.Medicine.Id;

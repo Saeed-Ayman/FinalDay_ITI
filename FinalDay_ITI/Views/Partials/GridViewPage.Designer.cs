@@ -37,8 +37,8 @@
             DeleteBtn = new Components.CRoundButton();
             EditBtn = new Components.CRoundButton();
             AddBtn = new Components.CRoundButton();
-            textBox1 = new TextBox();
-            comboBox1 = new ComboBox();
+            SearchTxt = new TextBox();
+            FieldsComboBox = new ComboBox();
             SearchLabel = new Label();
             dataGridView = new DataGridView();
             NoDataLabel = new Label();
@@ -52,8 +52,8 @@
             LayoutPanel.Controls.Add(DeleteBtn);
             LayoutPanel.Controls.Add(EditBtn);
             LayoutPanel.Controls.Add(AddBtn);
-            LayoutPanel.Controls.Add(textBox1);
-            LayoutPanel.Controls.Add(comboBox1);
+            LayoutPanel.Controls.Add(SearchTxt);
+            LayoutPanel.Controls.Add(FieldsComboBox);
             LayoutPanel.Controls.Add(SearchLabel);
             LayoutPanel.Dock = DockStyle.Top;
             LayoutPanel.Location = new Point(0, 0);
@@ -124,22 +124,24 @@
             AddBtn.UseVisualStyleBackColor = false;
             AddBtn.Click += Btns_Click;
             // 
-            // textBox1
+            // SearchTxt
             // 
-            textBox1.Anchor = AnchorStyles.Left;
-            textBox1.Location = new Point(132, 60);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 29);
-            textBox1.TabIndex = 1;
+            SearchTxt.Anchor = AnchorStyles.Left;
+            SearchTxt.Location = new Point(132, 60);
+            SearchTxt.Name = "SearchTxt";
+            SearchTxt.Size = new Size(150, 29);
+            SearchTxt.TabIndex = 1;
+            SearchTxt.TextChanged += SearchTxt_TextChanged;
             // 
-            // comboBox1
+            // FieldsComboBox
             // 
-            comboBox1.Anchor = AnchorStyles.Left;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(30, 60);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(100, 29);
-            comboBox1.TabIndex = 0;
+            FieldsComboBox.Anchor = AnchorStyles.Left;
+            FieldsComboBox.FormattingEnabled = true;
+            FieldsComboBox.Location = new Point(30, 60);
+            FieldsComboBox.Name = "FieldsComboBox";
+            FieldsComboBox.Size = new Size(100, 29);
+            FieldsComboBox.TabIndex = 0;
+            FieldsComboBox.SelectedIndexChanged += FieldsComboBox_SelectedIndexChanged;
             // 
             // SearchLabel
             // 
@@ -263,9 +265,9 @@
         private Panel LayoutPanel;
         private DataGridView dataGridView;
         private Label SearchLabel;
-        private ComboBox comboBox1;
+        private ComboBox FieldsComboBox;
         private Components.CRoundButton AddBtn;
-        private TextBox textBox1;
+        private TextBox SearchTxt;
         private Components.CRoundButton EditBtn;
         private Components.CRoundButton DeleteBtn;
         private Label NoDataLabel;

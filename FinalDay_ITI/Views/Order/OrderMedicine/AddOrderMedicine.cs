@@ -12,7 +12,7 @@ public partial class AddOrderMedicine : Form
 
         _order = order;
         MedicineNames.DataSource = MedicineController.Index();
-        MedicineNames.DisplayMember = "Name";
+        MedicineNames.DisplayMember = "Medicine";
         MedicineNames.ValueMember = "Id";
     }
 

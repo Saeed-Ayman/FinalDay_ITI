@@ -15,7 +15,7 @@ namespace FinalDay_ITI.Views.Order
             _order = new() { UserId = AuthController.User.Id, OrderMedicines = new List<Models.OrderMedicine>(), Date = DateTime.Now };
             OrderController.Store(_order);
 
-            gridViewPage = new(_order.Index) { Visible = true };
+            gridViewPage = new(nameof(OrderMedicineController), _order) { Visible = true };
             gridViewPage.OnClickBtns += ClickBtns;
             Controls.Add(gridViewPage);
         }

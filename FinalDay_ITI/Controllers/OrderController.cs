@@ -1,4 +1,5 @@
 ﻿using FinalDay_ITI.Models;
+using FinalDay_ITI.Repositories;
 using FinalDay_ITI.Views.Order;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,18 +9,20 @@ public class OrderController
 {
     private static readonly PharmacyContext _db = MainController.DB;
 
-    public static object Index(Func<Order, bool> prediction)
-        => _db.Orders.Include("OrderMedicines.Medicine").Include("User").Where(prediction).Select(order => new
+    public static List<OrderRepository> Index(Func<Order, bool> prediction, Func<OrderRepository, bool> predict)
+        => _db.Orders.Include("OrderMedicines.Medicine").Include("User").Where(prediction).Select(order => new OrderRepository
         {
-            order.Id,
-            order.User.Name,
+            Id = order.Id,
+            Name = order.User.Name,
             Medicines = string.Join(", ", order.OrderMedicines.Select(orderMedicine => orderMedicine.Medicine.Name).Distinct()),
             TotalQuantity = order.OrderMedicines.Select(orderMedicine => orderMedicine.Quantity).Sum(),
             TotalPrice = order.OrderMedicines.Select(orderMedicine => orderMedicine.Quantity * orderMedicine.Medicine.Price).Sum(),
-            order.Date,
-        }).ToList();
+            Date = order.Date,
+        }).Where(predict).ToList();
 
-    public static object Index() => Index(obj => true);
+    public static List<OrderRepository> Index() => Index((Order obj) => true);
+    public static List<OrderRepository> Index(Func<Order, bool> predict) => Index(predict, obj => true);
+    public static List<OrderRepository> Index(Func<OrderRepository, bool> predict) => Index(obj => true, predict);
 
     public static void Create(Form parent) => new AddOrder().ShowDialog(parent);
 

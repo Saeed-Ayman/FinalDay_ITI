@@ -57,11 +57,6 @@ public class AuthController
         Run(parent);
     }
 
-    public static object History()
-    {
-        return OrderController.Index(order => order.UserId == User?.Id);
-    }
-
     public static void Run(Form parent)
     {
         if (_firstUser = !_db.Users.Any(user => user.Role == ERole.Manager)) Register(parent);
