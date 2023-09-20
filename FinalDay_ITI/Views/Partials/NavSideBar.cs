@@ -21,6 +21,8 @@ public partial class NavSideBar : UserControl
 
         CategoriesBtn.Visible = ERole.Employee <= role;
         MedicinesBtn.Visible = ERole.Employee <= role;
+        OutOfStocksBtn.Visible = ERole.Employee <= role;
+        ExpiredMedicinesBtn.Visible = ERole.Employee <= role;
 
         // just in case
         SettingsBtn.Visible = ERole.User <= role;

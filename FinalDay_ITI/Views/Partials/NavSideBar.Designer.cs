@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             SettingsBtn = new FontAwesome.Sharp.IconButton();
-            MyOrdersBtn = new FontAwesome.Sharp.IconButton();
-            OrdersBtn = new FontAwesome.Sharp.IconButton();
             MedicinesBtn = new FontAwesome.Sharp.IconButton();
             CategoriesBtn = new FontAwesome.Sharp.IconButton();
             UsersBtn = new FontAwesome.Sharp.IconButton();
             HomeBtn = new FontAwesome.Sharp.IconButton();
+            ExpiredMedicinesBtn = new FontAwesome.Sharp.IconButton();
+            OutOfStocksBtn = new FontAwesome.Sharp.IconButton();
+            MyOrdersBtn = new FontAwesome.Sharp.IconButton();
+            OrdersBtn = new FontAwesome.Sharp.IconButton();
             SuspendLayout();
             // 
             // SettingsBtn
@@ -49,7 +51,7 @@
             SettingsBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             SettingsBtn.IconSize = 35;
             SettingsBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            SettingsBtn.Location = new Point(0, 440);
+            SettingsBtn.Location = new Point(0, 531);
             SettingsBtn.Name = "SettingsBtn";
             SettingsBtn.Padding = new Padding(20, 0, 10, 0);
             SettingsBtn.Size = new Size(300, 60);
@@ -59,52 +61,6 @@
             SettingsBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
             SettingsBtn.UseVisualStyleBackColor = false;
             SettingsBtn.Click += Btn_Click;
-            // 
-            // MyOrdersBtn
-            // 
-            MyOrdersBtn.BackColor = Color.Indigo;
-            MyOrdersBtn.Dock = DockStyle.Top;
-            MyOrdersBtn.FlatAppearance.BorderSize = 0;
-            MyOrdersBtn.FlatStyle = FlatStyle.Flat;
-            MyOrdersBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            MyOrdersBtn.IconChar = FontAwesome.Sharp.IconChar.Bookmark;
-            MyOrdersBtn.IconColor = Color.White;
-            MyOrdersBtn.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            MyOrdersBtn.IconSize = 35;
-            MyOrdersBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            MyOrdersBtn.Location = new Point(0, 300);
-            MyOrdersBtn.Name = "MyOrdersBtn";
-            MyOrdersBtn.Padding = new Padding(20, 0, 10, 0);
-            MyOrdersBtn.Size = new Size(300, 60);
-            MyOrdersBtn.TabIndex = 7;
-            MyOrdersBtn.Text = "MyOrders";
-            MyOrdersBtn.TextAlign = ContentAlignment.MiddleLeft;
-            MyOrdersBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
-            MyOrdersBtn.UseVisualStyleBackColor = false;
-            MyOrdersBtn.Click += Btn_Click;
-            // 
-            // OrdersBtn
-            // 
-            OrdersBtn.BackColor = Color.Indigo;
-            OrdersBtn.Dock = DockStyle.Top;
-            OrdersBtn.FlatAppearance.BorderSize = 0;
-            OrdersBtn.FlatStyle = FlatStyle.Flat;
-            OrdersBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            OrdersBtn.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
-            OrdersBtn.IconColor = Color.White;
-            OrdersBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            OrdersBtn.IconSize = 35;
-            OrdersBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            OrdersBtn.Location = new Point(0, 240);
-            OrdersBtn.Name = "OrdersBtn";
-            OrdersBtn.Padding = new Padding(20, 0, 10, 0);
-            OrdersBtn.Size = new Size(300, 60);
-            OrdersBtn.TabIndex = 5;
-            OrdersBtn.Text = "Orders";
-            OrdersBtn.TextAlign = ContentAlignment.MiddleLeft;
-            OrdersBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
-            OrdersBtn.UseVisualStyleBackColor = false;
-            OrdersBtn.Click += Btn_Click;
             // 
             // MedicinesBtn
             // 
@@ -198,6 +154,98 @@
             HomeBtn.UseVisualStyleBackColor = false;
             HomeBtn.Click += Btn_Click;
             // 
+            // ExpiredMedicinesBtn
+            // 
+            ExpiredMedicinesBtn.BackColor = Color.Indigo;
+            ExpiredMedicinesBtn.Dock = DockStyle.Top;
+            ExpiredMedicinesBtn.FlatAppearance.BorderSize = 0;
+            ExpiredMedicinesBtn.FlatStyle = FlatStyle.Flat;
+            ExpiredMedicinesBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            ExpiredMedicinesBtn.IconChar = FontAwesome.Sharp.IconChar.Capsules;
+            ExpiredMedicinesBtn.IconColor = Color.White;
+            ExpiredMedicinesBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ExpiredMedicinesBtn.IconSize = 35;
+            ExpiredMedicinesBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            ExpiredMedicinesBtn.Location = new Point(0, 240);
+            ExpiredMedicinesBtn.Name = "ExpiredMedicinesBtn";
+            ExpiredMedicinesBtn.Padding = new Padding(20, 0, 10, 0);
+            ExpiredMedicinesBtn.Size = new Size(300, 60);
+            ExpiredMedicinesBtn.TabIndex = 8;
+            ExpiredMedicinesBtn.Text = "Expired Medicines";
+            ExpiredMedicinesBtn.TextAlign = ContentAlignment.MiddleLeft;
+            ExpiredMedicinesBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            ExpiredMedicinesBtn.UseVisualStyleBackColor = false;
+            ExpiredMedicinesBtn.Click += Btn_Click;
+            // 
+            // OutOfStocksBtn
+            // 
+            OutOfStocksBtn.BackColor = Color.Indigo;
+            OutOfStocksBtn.Dock = DockStyle.Top;
+            OutOfStocksBtn.FlatAppearance.BorderSize = 0;
+            OutOfStocksBtn.FlatStyle = FlatStyle.Flat;
+            OutOfStocksBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            OutOfStocksBtn.IconChar = FontAwesome.Sharp.IconChar.StoreSlash;
+            OutOfStocksBtn.IconColor = Color.White;
+            OutOfStocksBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            OutOfStocksBtn.IconSize = 35;
+            OutOfStocksBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            OutOfStocksBtn.Location = new Point(0, 300);
+            OutOfStocksBtn.Name = "OutOfStocksBtn";
+            OutOfStocksBtn.Padding = new Padding(20, 0, 10, 0);
+            OutOfStocksBtn.Size = new Size(300, 60);
+            OutOfStocksBtn.TabIndex = 9;
+            OutOfStocksBtn.Text = "Out of Stocks";
+            OutOfStocksBtn.TextAlign = ContentAlignment.MiddleLeft;
+            OutOfStocksBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            OutOfStocksBtn.UseVisualStyleBackColor = false;
+            OutOfStocksBtn.Click += Btn_Click;
+            // 
+            // MyOrdersBtn
+            // 
+            MyOrdersBtn.BackColor = Color.Indigo;
+            MyOrdersBtn.Dock = DockStyle.Top;
+            MyOrdersBtn.FlatAppearance.BorderSize = 0;
+            MyOrdersBtn.FlatStyle = FlatStyle.Flat;
+            MyOrdersBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            MyOrdersBtn.IconChar = FontAwesome.Sharp.IconChar.Bookmark;
+            MyOrdersBtn.IconColor = Color.White;
+            MyOrdersBtn.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            MyOrdersBtn.IconSize = 35;
+            MyOrdersBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            MyOrdersBtn.Location = new Point(0, 420);
+            MyOrdersBtn.Name = "MyOrdersBtn";
+            MyOrdersBtn.Padding = new Padding(20, 0, 10, 0);
+            MyOrdersBtn.Size = new Size(300, 60);
+            MyOrdersBtn.TabIndex = 11;
+            MyOrdersBtn.Text = "MyOrders";
+            MyOrdersBtn.TextAlign = ContentAlignment.MiddleLeft;
+            MyOrdersBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            MyOrdersBtn.UseVisualStyleBackColor = false;
+            MyOrdersBtn.Click += Btn_Click;
+            // 
+            // OrdersBtn
+            // 
+            OrdersBtn.BackColor = Color.Indigo;
+            OrdersBtn.Dock = DockStyle.Top;
+            OrdersBtn.FlatAppearance.BorderSize = 0;
+            OrdersBtn.FlatStyle = FlatStyle.Flat;
+            OrdersBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            OrdersBtn.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
+            OrdersBtn.IconColor = Color.White;
+            OrdersBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            OrdersBtn.IconSize = 35;
+            OrdersBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            OrdersBtn.Location = new Point(0, 360);
+            OrdersBtn.Name = "OrdersBtn";
+            OrdersBtn.Padding = new Padding(20, 0, 10, 0);
+            OrdersBtn.Size = new Size(300, 60);
+            OrdersBtn.TabIndex = 10;
+            OrdersBtn.Text = "Orders";
+            OrdersBtn.TextAlign = ContentAlignment.MiddleLeft;
+            OrdersBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            OrdersBtn.UseVisualStyleBackColor = false;
+            OrdersBtn.Click += Btn_Click;
+            // 
             // NavSideBar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -206,6 +254,8 @@
             BackColor = Color.Indigo;
             Controls.Add(MyOrdersBtn);
             Controls.Add(OrdersBtn);
+            Controls.Add(OutOfStocksBtn);
+            Controls.Add(ExpiredMedicinesBtn);
             Controls.Add(MedicinesBtn);
             Controls.Add(CategoriesBtn);
             Controls.Add(UsersBtn);
@@ -213,17 +263,19 @@
             Controls.Add(SettingsBtn);
             ForeColor = Color.White;
             Name = "NavSideBar";
-            Size = new Size(300, 500);
+            Size = new Size(300, 591);
             ResumeLayout(false);
         }
 
         #endregion
         private FontAwesome.Sharp.IconButton SettingsBtn;
-        private FontAwesome.Sharp.IconButton MyOrdersBtn;
-        private FontAwesome.Sharp.IconButton OrdersBtn;
         private FontAwesome.Sharp.IconButton MedicinesBtn;
         private FontAwesome.Sharp.IconButton CategoriesBtn;
         private FontAwesome.Sharp.IconButton UsersBtn;
         private FontAwesome.Sharp.IconButton HomeBtn;
+        private FontAwesome.Sharp.IconButton ExpiredMedicinesBtn;
+        private FontAwesome.Sharp.IconButton OutOfStocksBtn;
+        private FontAwesome.Sharp.IconButton MyOrdersBtn;
+        private FontAwesome.Sharp.IconButton OrdersBtn;
     }
 }

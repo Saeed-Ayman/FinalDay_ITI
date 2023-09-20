@@ -19,6 +19,10 @@ public partial class Dashboard : Form
             { "Users", new GridViewPage(UserController.Index) },
             { "Categories", new GridViewPage(CategoryController.Index) },
             { "Medicines", new GridViewPage(MedicineController.Index) },
+            { "Expired Medicines", new GridViewPage(
+                () => MedicineController.Index(medicine => medicine.ExpirationDate <= DateTime.Now), false) },
+            { "Out of Stocks", new GridViewPage(
+                () => MedicineController.Index(medicine => medicine.Quantity == 0), false) },
             { "Orders", new GridViewPage(OrderController.Index) },
             { "MyOrders", new GridViewPage(AuthController.History) },
             { "Settings", new SettingsPage() },

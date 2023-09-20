@@ -9,7 +9,7 @@ public class OrderController
     private static readonly PharmacyContext _db = MainController.DB;
 
     public static object Index(Func<Order, bool> prediction)
-        => _db.Orders.Include("OrderMedicines.Medicine").Where(prediction).Select(order => new
+        => _db.Orders.Include("OrderMedicines.Medicine").Include("User").Where(prediction).Select(order => new
         {
             order.Id,
             order.User.Name,

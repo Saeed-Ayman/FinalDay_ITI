@@ -6,11 +6,14 @@ partial class GridViewPage : UserControl
 
     private readonly Func<object> _dataSet;
 
-    public GridViewPage(Func<object> dataSet, bool AddButton = true)
+    public GridViewPage(Func<object> dataSet, bool Buttons = true)
     {
         InitializeComponent();
 
-        AddBtn.Visible = AddButton;
+        AddBtn.Visible = Buttons;
+        EditBtn.Visible = Buttons;
+        DeleteBtn.Visible = Buttons;
+
         _dataSet = dataSet;
 
         Dock = DockStyle.Fill;

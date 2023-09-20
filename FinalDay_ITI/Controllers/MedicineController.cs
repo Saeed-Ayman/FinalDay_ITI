@@ -9,9 +9,9 @@ class MedicineController
 {
     private static readonly PharmacyContext _db = MainController.DB;
 
-    public static object Index()
+    public static object Index(Func<Medicine, bool> predicate)
     {
-        return _db.Medicines.Include("OrderMedicines").Select(medicine => new
+        return _db.Medicines.Include("Category").Where(predicate).Select(medicine => new
         {
             medicine.Id,
             medicine.Name,
@@ -22,6 +22,8 @@ class MedicineController
             ExpirationDate = new DateOnly(medicine.ExpirationDate.Year, medicine.ExpirationDate.Month, medicine.ExpirationDate.Day),
         }).ToList();
     }
+
+    public static object Index() => Index(medicine => true);
 
     public static void Create(Form parent)
     {
