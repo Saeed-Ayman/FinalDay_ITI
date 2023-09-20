@@ -39,6 +39,9 @@ public class OrderController
     {
         var order = _db.Orders.Where(order => order.Id == id).First();
 
+        foreach (var orderMedicine in order.OrderMedicines)
+            OrderMedicineController.Destroy(orderMedicine.OrderId, orderMedicine.Id);
+
         _db.Remove(order);
 
         _db.SaveChanges();

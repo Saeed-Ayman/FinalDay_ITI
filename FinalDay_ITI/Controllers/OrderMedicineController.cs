@@ -29,15 +29,22 @@ public static class OrderMedicineController
 
     public static void Store(Order order, int medicineId, int quantity)
     {
-        var orderMedicines = order.OrderMedicines.Where(orderMedicine => orderMedicine.MedicineId == medicineId).FirstOrDefault();
+        var medicine = _db.Medicines.Where(medicine => medicine.Id == medicineId).First();
 
-        if (orderMedicines == null)
+        if (quantity > medicine.Quantity)
+            throw new Exception($"Quantity not available.\n\rMedicine quantity = {medicine.Quantity}.");
+
+        medicine.Quantity -= quantity;
+
+        var orderSameMedicines = order.OrderMedicines.Where(orderMedicine => orderMedicine.MedicineId == medicineId).FirstOrDefault();
+
+        if (orderSameMedicines == null)
         {
-            orderMedicines = new OrderMedicine() { MedicineId = medicineId };
-            order.OrderMedicines.Add(orderMedicines);
+            orderSameMedicines = new OrderMedicine() { MedicineId = medicineId };
+            order.OrderMedicines.Add(orderSameMedicines);
         }
 
-        orderMedicines.Quantity += quantity;
+        orderSameMedicines.Quantity += quantity;
 
         _db.SaveChanges();
     }
@@ -49,8 +56,32 @@ public static class OrderMedicineController
     {
         var order = _db.Orders.Where(order => order.Id == orderId).First();
         var orderMedicine = order.OrderMedicines.Where(orderMedicine => orderMedicine.Id == id).First();
+
+        if (orderMedicine.MedicineId != medicineId)
+        {
+            var newMedicine = _db.Medicines.Where(medicine => medicine.Id == medicineId).First();
+
+            if (newMedicine.Quantity < quantity)
+                throw new Exception($"Quantity not available.\n\rMedicine quantity = {newMedicine.Quantity}.");
+
+            orderMedicine.Medicine.Quantity += orderMedicine.Quantity;
+            newMedicine.Quantity -= quantity;
+
+            orderMedicine.MedicineId = newMedicine.Id;
+            orderMedicine.Quantity += quantity;
+        }
+        else
+        {
+            if (orderMedicine.Medicine.Quantity + orderMedicine.Quantity < quantity)
+                throw new Exception($"Quantity not available.\n\rMedicine quantity = {orderMedicine.Medicine.Quantity + orderMedicine.Quantity}.");
+
+            orderMedicine.Medicine.Quantity += orderMedicine.Quantity - quantity;
+            orderMedicine.Quantity = quantity;
+        }
+
+
         var orderSameMedicine = order.OrderMedicines.
-            Where(orderMedicine => orderMedicine.MedicineId == medicineId).FirstOrDefault();
+            Where(orderMedicine => orderMedicine.Id != id && orderMedicine.MedicineId == medicineId).FirstOrDefault();
 
         if (orderSameMedicine == null)
         {
@@ -73,6 +104,8 @@ public static class OrderMedicineController
     {
         var order = _db.Orders.Where(order => order.Id == orderId).First();
         var orderMedicine = order.OrderMedicines.Where(orderMedicine => orderMedicine.Id == id).First();
+
+        orderMedicine.Medicine.Quantity += orderMedicine.Quantity;
 
         order.OrderMedicines.Remove(orderMedicine);
 

@@ -13,7 +13,7 @@ public partial class EditOrder : Form
         InitializeComponent();
 
         _order = order;
-        gridViewPage = new(order.Index) { Dock = DockStyle.Fill };
+        gridViewPage = new(order.Index) { Visible = true };
         gridViewPage.OnClickBtns += ClickBtns;
         Controls.Add(gridViewPage);
     }
