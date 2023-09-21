@@ -19,17 +19,13 @@ public partial class Dashboard : Form
             { "Users", new GridViewPage(nameof(UserController)) },
             { "Categories", new GridViewPage(nameof(CategoryController)) },
             { "Medicines", new GridViewPage(nameof(MedicineController)) },
-            { "Expired Medicines", new GridViewPage(nameof(ExpiredMedicinesController), false) },
-            { "Out of Stocks", new GridViewPage(nameof(OutOfStocksController), false) },
+            { "Expired Medicines", new GridViewPage(nameof(ExpiredMedicinesController), Buttons: false) },
+            { "Out of Stocks", new GridViewPage(nameof(OutOfStocksController), Buttons: false) },
             { "Orders", new GridViewPage(nameof(OrderController)) },
             { "MyOrders", new GridViewPage(nameof(UserOrderController)) },
             { "Settings", new SettingsPage() },
         };
 
-        LayoutPanel.Controls.AddRange(_pages.Select(page => page.Value).ToArray());
-        ChangePageTo("Home");
-
-        // set events 
         ((GridViewPage)_pages["Users"]).OnClickBtns += UsersBtns_Click;
         ((GridViewPage)_pages["Categories"]).OnClickBtns += CategoriesBtns_Click;
         ((GridViewPage)_pages["Medicines"]).OnClickBtns += MedicinesBtns_Click;
@@ -39,12 +35,11 @@ public partial class Dashboard : Form
 
         dashboardHeader.OnClickMenuBtn += navSideBar1.ShowOrHidePanel;
         navSideBar1.OnClickBtn += ChangePage;
+
+        LayoutPanel.Controls.AddRange(_pages.Select(page => page.Value).ToArray());
+        ChangePageTo("Home");
     }
 
-    private void ChangePage(object? sender, EventArgs e)
-    {
-        if (sender is Button b) ChangePageTo(b.Text);
-    }
 
     public void ChangePageTo(string page)
     {
@@ -54,61 +49,23 @@ public partial class Dashboard : Form
         _currentPage.Visible = true;
     }
 
+    private void ChangePage(object? sender, EventArgs e) { if (sender is Button b) ChangePageTo(b.Text); }
+
     #region routes
-    private void UsersBtns_Click(object? sender, DataGridView e)
+    private void UsersBtns_Click(object? sender, DataGridView e) => Router(sender, e, UserController.Create, UserController.Edit, UserController.Delete);
+    private void CategoriesBtns_Click(object? sender, DataGridView e) => Router(sender, e, CategoryController.Create, CategoryController.Edit, CategoryController.Delete);
+    private void MedicinesBtns_Click(object? sender, DataGridView e) => Router(sender, e, MedicineController.Create, MedicineController.Edit, MedicineController.Delete);
+    private void OrdersBtns_Click(object? sender, DataGridView e) => Router(sender, e, OrderController.Create, OrderController.Edit, OrderController.Delete);
+
+    private void Router(object? button, DataGridView dataGrid, Action<Form> createAction, Action<int, Form> editAction, Action<int, Form> DeleteAction)
     {
-        if (sender is not Button b) return;
+        if (button is not Button b) return;
 
         switch (b.Name)
         {
-            case "AddBtn": UserController.Create(this); break;
-            case "EditBtn": UserController.Edit(Convert.ToInt32(e.CurrentRow.Cells["id"].Value), this); break;
-            case "DeleteBtn": UserController.Delete(Convert.ToInt32(e.CurrentRow.Cells["id"].Value), this); break;
-            default: break;
-        }
-
-        _currentPage?.Refresh();
-    }
-
-    private void CategoriesBtns_Click(object? sender, DataGridView e)
-    {
-        if (sender is not Button b) return;
-
-        switch (b.Name)
-        {
-            case "AddBtn": CategoryController.Create(this); break;
-            case "EditBtn": CategoryController.Edit(Convert.ToInt32(e.CurrentRow.Cells["id"].Value), this); break;
-            case "DeleteBtn": CategoryController.Delete(Convert.ToInt32(e.CurrentRow.Cells["id"].Value), this); break;
-            default: break;
-        }
-
-        _currentPage?.Refresh();
-    }
-
-    private void MedicinesBtns_Click(object? sender, DataGridView e)
-    {
-        if (sender is not Button b) return;
-
-        switch (b.Name)
-        {
-            case "AddBtn": MedicineController.Create(this); break;
-            case "EditBtn": MedicineController.Edit(Convert.ToInt32(e.CurrentRow.Cells["id"].Value), this); break;
-            case "DeleteBtn": MedicineController.Delete(Convert.ToInt32(e.CurrentRow.Cells["id"].Value), this); break;
-            default: break;
-        }
-
-        _currentPage?.Refresh();
-    }
-
-    private void OrdersBtns_Click(object? sender, DataGridView e)
-    {
-        if (sender is not Button b) return;
-
-        switch (b.Name)
-        {
-            case "AddBtn": OrderController.Create(this); break;
-            case "EditBtn": OrderController.Edit(Convert.ToInt32(e.CurrentRow.Cells["id"].Value), this); break;
-            case "DeleteBtn": OrderController.Delete(Convert.ToInt32(e.CurrentRow.Cells["id"].Value), this); break;
+            case "AddBtn": createAction(this); break;
+            case "EditBtn": editAction(Convert.ToInt32(dataGrid.CurrentRow.Cells["id"].Value), this); break;
+            case "DeleteBtn": DeleteAction(Convert.ToInt32(dataGrid.CurrentRow.Cells["id"].Value), this); break;
             default: break;
         }
 
