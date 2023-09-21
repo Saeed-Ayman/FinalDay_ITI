@@ -20,7 +20,7 @@ public partial class Dashboard : Form
             { "Categories", new GridViewPage(nameof(CategoryController)) },
             { "Medicines", new GridViewPage(nameof(MedicineController)) },
             { "Expired Medicines", new GridViewPage(nameof(ExpiredMedicinesController), false) },
-            { "Out of Stocks", new GridViewPage(nameof(OutofStocksController), false) },
+            { "Out of Stocks", new GridViewPage(nameof(OutOfStocksController), false) },
             { "Orders", new GridViewPage(nameof(OrderController)) },
             { "MyOrders", new GridViewPage(nameof(UserOrderController)) },
             { "Settings", new SettingsPage() },

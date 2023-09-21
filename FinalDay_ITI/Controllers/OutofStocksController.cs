@@ -2,7 +2,7 @@
 
 namespace FinalDay_ITI.Controllers;
 
-public class OutofStocksController
+public class OutOfStocksController
 {
     public static List<MedicineRepository> Index()
         => MedicineController.Index(medicine => medicine.Quantity == 0);
