@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
-            DbConnection_Thread = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -44,11 +43,6 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // DbConnection_Thread
-            // 
-            DbConnection_Thread.DoWork += DbConnection_Thread_DoWork;
-            DbConnection_Thread.RunWorkerCompleted += DbConnection_Thread_RunWorkerCompleted;
-            // 
             // Intro
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -60,6 +54,7 @@
             Name = "Intro";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Intro";
+            Shown += Intro_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -67,6 +62,5 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private System.ComponentModel.BackgroundWorker DbConnection_Thread;
     }
 }

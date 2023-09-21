@@ -6,7 +6,7 @@ public partial class Register : Form
 {
     public Register() => InitializeComponent();
 
-    private void LoginLabel_Click(object sender, EventArgs e) => AuthController.Login(this);
+    private void LoginLabel_Click(object sender, EventArgs e) => AuthController.Login();
 
     private void RegisterBtn_Click(object sender, EventArgs e)
     {
@@ -16,7 +16,7 @@ public partial class Register : Form
                 new(FirstNameTxt.Text, LastNameTxt.Text, EmailTxt.Text, PasswordTxt.Text, ConfirmPasswordTxt.Text)
             );
 
-            MainController.SwitchToForm(this, new Dashboard());
+            MainController.SwitchToForm(new Dashboard());
         }
         catch (Exception ex)
         {

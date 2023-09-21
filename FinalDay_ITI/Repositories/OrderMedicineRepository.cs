@@ -1,4 +1,4 @@
-﻿namespace FinalDay_ITI.Controllers;
+﻿namespace FinalDay_ITI.Repositories;
 
 public class OrderMedicineRepository
 {

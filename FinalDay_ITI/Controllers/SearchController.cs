@@ -57,7 +57,7 @@ public class SearchController
         return field switch
         {
             "Id" => OrderController.Index((OrderRepository order) => order.Id.Comparison(value)),
-            "Name" => OrderController.Index((OrderRepository order) => order.Name.Comparison(value)),
+            "User" => OrderController.Index((OrderRepository order) => order.User.Comparison(value)),
             "Medicines" => OrderController.Index((OrderRepository order) => order.Medicines.Comparison(value)),
             "TotalQuantity" => OrderController.Index((OrderRepository order) => order.TotalQuantity.Comparison(value)),
             "TotalPrice" => OrderController.Index((OrderRepository order) => order.TotalPrice.Comparison(value)),
@@ -72,7 +72,7 @@ public class SearchController
         return field switch
         {
             "Id" => UserOrderController.Index((OrderRepository order) => order.Id.Comparison(value)),
-            "Name" => UserOrderController.Index((OrderRepository order) => order.Name.Comparison(value)),
+            "User" => UserOrderController.Index((OrderRepository order) => order.User.Comparison(value)),
             "Medicines" => UserOrderController.Index((OrderRepository order) => order.Medicines.Comparison(value)),
             "TotalQuantity" => UserOrderController.Index((OrderRepository order) => order.TotalQuantity.Comparison(value)),
             "TotalPrice" => UserOrderController.Index((OrderRepository order) => order.TotalPrice.Comparison(value)),

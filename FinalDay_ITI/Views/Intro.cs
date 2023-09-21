@@ -1,34 +1,39 @@
 ﻿using FinalDay_ITI.Controllers;
+using FinalDay_ITI.Models;
 
 namespace FinalDay_ITI.Views;
 
 public partial class Intro : Form
 {
-    public Intro()
+    public Intro() => InitializeComponent();
+
+    private void Intro_Shown(object sender, EventArgs e)
     {
-        InitializeComponent();
-        DbConnection_Thread.RunWorkerAsync();
+        Thread thread = new(new ThreadStart(ConnectDB));
+        thread.Start();
+        thread.Join();
+
+        if (MainController.DB == null) Close();
+        else AuthController.Run();
     }
 
-    private void DbConnection_Thread_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+    public static void ConnectDB()
     {
-        if (MainController.DB.Database.CanConnect())
+        PharmacyContext pharmacyContext = new();
+
+        if (pharmacyContext.Database.CanConnect())
         {
-            AuthController.Run(this);
-            e.Cancel = true;
+            MainController.DB = pharmacyContext;
             return;
         }
 
-        var result = MessageBox.Show(
-                "Error connection to database.\n\rMake sure database is exists and server running.",
-                "Error",
-                MessageBoxButtons.RetryCancel,
-                MessageBoxIcon.Error
+        DialogResult dialogResult = MessageBox.Show(
+            "Error connection to database.\n\rMake sure database is exists and server running.",
+            "Error",
+            MessageBoxButtons.RetryCancel,
+            MessageBoxIcon.Hand
         );
 
-        if (result == DialogResult.Retry) DbConnection_Thread_DoWork(sender, e);
-        e.Cancel = true;
+        if (dialogResult == DialogResult.Retry) ConnectDB();
     }
-
-    private void DbConnection_Thread_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) => Close();
 }

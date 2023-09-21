@@ -14,7 +14,7 @@ public partial class DashboardHeader : UserControl
 
     private void MenuBtn_Click(object sender, EventArgs e) => OnClickMenuBtn?.Invoke(sender, e);
 
-    private void LogoutBtn_Click(object sender, EventArgs e) => AuthController.Logout(ParentForm);
+    private void LogoutBtn_Click(object sender, EventArgs e) => AuthController.Logout();
 
     public override void Refresh()
     {

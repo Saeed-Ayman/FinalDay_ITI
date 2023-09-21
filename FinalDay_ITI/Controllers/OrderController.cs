@@ -13,7 +13,7 @@ public class OrderController
         => _db.Orders.Include("OrderMedicines.Medicine").Include("User").Where(prediction).Select(order => new OrderRepository
         {
             Id = order.Id,
-            Name = order.User.Name,
+            User = order.User.Name,
             Medicines = string.Join(", ", order.OrderMedicines.Select(orderMedicine => orderMedicine.Medicine.Name).Distinct()),
             TotalQuantity = order.OrderMedicines.Select(orderMedicine => orderMedicine.Quantity).Sum(),
             TotalPrice = order.OrderMedicines.Select(orderMedicine => orderMedicine.Quantity * orderMedicine.Medicine.Price).Sum(),

@@ -10,7 +10,7 @@ public class AuthController
     private static readonly PharmacyContext _db = MainController.DB;
     private static bool _firstUser;
 
-    public static void Login(Form parent) => MainController.SwitchToForm(parent, new Login());
+    public static void Login() => MainController.SwitchToForm(new Login());
 
     public static void Attempt(LoginRequest request)
     {
@@ -24,7 +24,7 @@ public class AuthController
         User = user;
     }
 
-    public static void Register(Form parent) => MainController.SwitchToForm(parent, new Register());
+    public static void Register() => MainController.SwitchToForm(new Register());
 
     public static void SignUp(UserRequest request)
     {
@@ -39,7 +39,7 @@ public class AuthController
         Attempt(new(request.User.Email, request.User.Password));
     }
 
-    public static void Logout(Form parent)
+    public static void Logout()
     {
         var result = MessageBox.Show(
             "Are you sure to logout?",
@@ -48,18 +48,18 @@ public class AuthController
             MessageBoxIcon.Question
         );
 
-        if (result == DialogResult.Yes) SignOut(parent);
+        if (result == DialogResult.Yes) SignOut();
     }
 
-    public static void SignOut(Form parent)
+    public static void SignOut()
     {
         User = null;
-        Run(parent);
+        Run();
     }
 
-    public static void Run(Form parent)
+    public static void Run()
     {
-        if (_firstUser = !_db.Users.Any(user => user.Role == ERole.Manager)) Register(parent);
-        else Login(parent);
+        if (_firstUser = !_db.Users.Any(user => user.Role == ERole.Manager)) Register();
+        else Login();
     }
 }

@@ -5,27 +5,27 @@ namespace FinalDay_ITI.Controllers;
 
 class MainController
 {
-    public static PharmacyContext DB = new();
+    public static PharmacyContext? DB;
     public static Form? RunnerForm;
+    public static Form? NextRunnerForm;
 
     public static void Run()
     {
         ApplicationConfiguration.Initialize();
-        Form intro = new Intro();
-        Application.Run(intro);
+        NextRunnerForm = new Intro();
 
-        while (RunnerForm != null)
+        while (NextRunnerForm != null)
         {
-            Form form = RunnerForm;
-            RunnerForm = null;
-            Application.Run(form);
+            RunnerForm = NextRunnerForm;
+            NextRunnerForm = null;
+            Application.Run(RunnerForm);
         }
     }
 
-    public static void SwitchToForm(Form runnerForm, Form opening)
+    public static void SwitchToForm(Form? opening)
     {
-        RunnerForm = opening;
-        runnerForm?.Close();
+        NextRunnerForm = opening;
+        RunnerForm?.Close();
     }
 }
 

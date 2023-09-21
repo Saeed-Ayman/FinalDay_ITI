@@ -6,14 +6,14 @@ public partial class Login : Form
 {
     public Login() => InitializeComponent();
 
-    private void RegisterLabel_Click(object sender, EventArgs e) => AuthController.Register(this);
+    private void RegisterLabel_Click(object sender, EventArgs e) => AuthController.Register();
 
     private void LoginBtn_Click(object sender, EventArgs e)
     {
         try
         {
             AuthController.Attempt(new(EmailTxt.Text, PasswordTxt.Text));
-            MainController.SwitchToForm(this, new Dashboard());
+            MainController.SwitchToForm(new Dashboard());
         }
         catch (Exception ex)
         {

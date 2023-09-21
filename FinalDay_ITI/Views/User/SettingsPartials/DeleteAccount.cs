@@ -27,7 +27,7 @@ public partial class DeleteAccount : UserControl
         try
         {
             SettingsController.Destroy(PasswordTxt.Text);
-            AuthController.SignOut(ParentForm);
+            AuthController.SignOut();
         }
         catch (Exception ex)
         {
